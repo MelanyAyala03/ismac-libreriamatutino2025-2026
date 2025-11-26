@@ -20,7 +20,7 @@ public class LibroTestUnitaria {
                 "Dir", "0999", "correo@mail.com");
 
         Libro = new Libro();
-        Libro.setIdLibro(10);
+        Libro.setIdLibro(10);//8
         Libro.setTitulo("Cien años de soledad");
         Libro.setEditorial("Sudamericana");
         Libro.setNumPaginas(500);

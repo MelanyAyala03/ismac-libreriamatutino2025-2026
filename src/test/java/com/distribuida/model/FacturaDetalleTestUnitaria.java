@@ -18,7 +18,7 @@ public class FacturaDetalleTestUnitaria {
         Libro.setTitulo("Libro test");
         Libro.setPrecio(20);
 
-        Factura = new Factura();
+      //8  Factura = new Factura();
         Factura.setNumFactura("FAC-010");
 
         Detalle = new FacturaDetalle();

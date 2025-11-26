@@ -122,5 +122,7 @@ public class Autor {
                 ", correo='" + correo + '\'' +
                 '}';
     }
-
+//
+    public void setNacionalidad(String colombiana) {
+    }
 }

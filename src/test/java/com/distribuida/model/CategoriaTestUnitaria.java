@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CategoriaTestUnitaria {
-
+//8
     private Categoria Categoria;
 
     @BeforeEach

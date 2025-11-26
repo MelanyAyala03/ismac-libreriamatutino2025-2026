@@ -18,10 +18,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @Transactional
 @Rollback(value = false)
 public class ClienteTestintegracion {
-
+//8
     @Autowired
     public ClienteDAO clienteDAO;
-
+//8
     @Test
     public void findAlll(){
         List<Cliente> clientes =clienteDAO.findAll();
@@ -65,7 +65,6 @@ public class ClienteTestintegracion {
          assertEquals("Juan77", clienteActualizado.getNombre());
 assertEquals("Taipe77", clienteActualizado.getApellido());
     }
-
         @Test
         public void delete() {
             if (clienteDAO.existsById(40)) {

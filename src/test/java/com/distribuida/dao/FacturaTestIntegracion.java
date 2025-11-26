@@ -20,27 +20,25 @@ import java.util.Optional;
 public class FacturaTestIntegracion {
 
     @Autowired
-    private  FacturaDAO facturaDAO;
-
+    private FacturaDAO facturaDAO;
+//8
     @Autowired
     private ClienteDAO clienteDAO;
 
     @Test
-    public void testFacturaFindAll(){
+    public void testFacturaFindAll() {
         List<Factura> factura = facturaDAO.findAll();
         factura.forEach(System.out::println);
     }
 
     @Test
-    public void testFacturaFindOne(){
+    public void testFacturaFindOne() {
         Optional<Factura> factura = facturaDAO.findById(1);
         System.out.println(factura.toString());
     }
 
-
-
     @Test
-    public void testFacturaSave(){
+    public void testFacturaSave() {
         Optional<Cliente> cliente = clienteDAO.findById(1);
 
         Factura factura = new Factura();
@@ -53,26 +51,33 @@ public class FacturaTestIntegracion {
         factura.setCliente(cliente.orElse(null));
 
         facturaDAO.save(factura);
-
-
     }
+
     @Test
-    public void testFacturaUpdate(){
+    public void testFacturaUpdate() {
         Optional<Cliente> cliente = clienteDAO.findById(2);
         Optional<Factura> factura = facturaDAO.findById(86);
-        factura.orElse(null).setNumFactura("FAC-00025");
-        factura.orElse(null).setFecha(new Date());
-        factura.orElse(null).setTotalNeto(200.00);
-        factura.orElse(null).setIva(60.00);
-        factura.orElse(null).setTotal(260.00);
-        factura.orElse(null).setTotalNeto(200.00);
-        factura.orElse(null).setCliente(cliente.orElse(null));
 
-        facturaDAO.save(factura.orElse(null));
-}
-@Test
-public void testFacturaDelete(){
+        if (factura.isPresent()) {
+
+            Factura f = factura.get();   // <<< LA CORRECCIÓN
+
+            f.setNumFactura("FAC-00025");
+            f.setFecha(new Date());
+            f.setTotalNeto(200.00);
+            f.setIva(60.00);
+            f.setTotal(260.00);
+            f.setCliente(cliente.orElse(null));
+
+            facturaDAO.save(f);
+
+        } else {
+            System.out.println("No existe la factura con ID 86");
+        }
+    }
+
+    @Test
+    public void testFacturaDelete() {
         facturaDAO.deleteById(86);
-}
-
+    }
 }

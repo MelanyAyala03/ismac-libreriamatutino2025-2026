@@ -37,7 +37,7 @@ public class ClienteTestUnitaria {
 
     @Test
     public void testClienteSetters(){
-
+//8
         Cliente.setIdCliente(2);
         Cliente.setCedula("178945612");
         Cliente.setNombre("Julia");
