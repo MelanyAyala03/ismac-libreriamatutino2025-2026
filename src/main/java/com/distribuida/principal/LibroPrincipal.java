@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class LibroPrincipal {
     public static void main(String[] args) {
-
+//
 
         Libro libro = new Libro();
         libro.setIdLibro(1);

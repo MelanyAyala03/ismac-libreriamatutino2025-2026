@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
 @Rollback(value = false)
-public class ClienteTestintegracion {
+public class ClienteTestIntegracion {
 //8
     @Autowired
     public ClienteDAO clienteDAO;

@@ -24,7 +24,7 @@ public class FacturaTestIntegracion {
 //8
     @Autowired
     private ClienteDAO clienteDAO;
-
+//8
     @Test
     public void testFacturaFindAll() {
         List<Factura> factura = facturaDAO.findAll();

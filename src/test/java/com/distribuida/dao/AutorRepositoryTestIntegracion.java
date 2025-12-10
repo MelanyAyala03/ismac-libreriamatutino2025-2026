@@ -11,13 +11,13 @@ import org.springframework.test.annotation.Rollback;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
 @Rollback(value = false)
-public class AutorTestintegracion {
+public class AutorRepositoryTestIntegracion {
 
     @Autowired
     private AutorDAO autorDAO;
@@ -47,9 +47,9 @@ public class AutorTestintegracion {
 
     @Test
     public void update(){
-        Optional<Autor> autor = autorDAO.findById(1);
-        autor.orElse(null).setNombre("Autor Editado");
-        autorDAO.save(autor.orElse(null));
+        Autor autor = autorDAO.findById(4).orElseThrow();   // ← YA NO DEVUELVE NULL
+        autor.setNombre("Autor Editado");
+        autorDAO.save(autor);
     }
 
     @Test
@@ -57,4 +57,3 @@ public class AutorTestintegracion {
         autorDAO.deleteById(1);
     }
 }
-//7

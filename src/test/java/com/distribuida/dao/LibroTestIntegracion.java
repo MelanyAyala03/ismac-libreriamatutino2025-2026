@@ -18,7 +18,7 @@ import java.util.Optional;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
 @Rollback(value = false)
-public class LibroTestintegracion {
+public class LibroTestIntegracion {
 //8
     @Autowired
     private LibroDAO libroDAO;

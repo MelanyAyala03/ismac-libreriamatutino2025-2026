@@ -7,4 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FacturaDetalleDAO extends JpaRepository<FacturaDetalle, Integer> {
 }
-//8
+//

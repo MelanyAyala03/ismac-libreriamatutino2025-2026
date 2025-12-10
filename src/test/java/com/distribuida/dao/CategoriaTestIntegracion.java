@@ -15,7 +15,7 @@ import java.util.Optional;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
 @Rollback(value = false)
-public class CategoriaTestintegracion {
+public class CategoriaTestIntegracion {
 
     @Autowired
     private CategoriaDAO categoriaDAO;

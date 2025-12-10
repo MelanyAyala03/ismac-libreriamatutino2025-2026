@@ -1,7 +1,7 @@
 package com.distribuida.dao;
 
-import com.distribuida.model.FacturaDetalle;
 import com.distribuida.model.Factura;
+import com.distribuida.model.FacturaDetalle;
 import com.distribuida.model.Libro;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -17,11 +17,11 @@ import java.util.Optional;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
 @Rollback(value = false)
-public class FacturaDetalleTestintegracion {
+public class FacturaDetalleRepositoryTestIntegracion {
 
     @Autowired
     private FacturaDetalleDAO facturaDetalleDAO;
-//
+
     @Autowired
     private FacturaDAO facturaDAO;
 
@@ -74,5 +74,5 @@ public class FacturaDetalleTestintegracion {
     @Test
     public void delete(){
         facturaDetalleDAO.deleteById(1);
-    }
+}
 }
