@@ -12,43 +12,49 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/facturadetalles")
 public class FacturaDetalleController {
-//
+
     @Autowired
     private FacturaDetalleService facturaDetalleService;
 
     @GetMapping
-    public ResponseEntity<List<FacturaDetalle>> findAll(){return ResponseEntity.ok(facturaDetalleService.findAll());
+    public ResponseEntity<List<FacturaDetalle>> findAll() {
+        return ResponseEntity.ok(facturaDetalleService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FacturaDetalle> findOne(@PathVariable int id){
+    public ResponseEntity<FacturaDetalle> findOne(@PathVariable int id) {
         Optional<FacturaDetalle> facturaDetalle = facturaDetalleService.findOne(id);
 
-        if (facturaDetalle == null){
+        if (facturaDetalle.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(facturaDetalle.orElse(null));
+
+        return ResponseEntity.ok(facturaDetalle.get());
     }
 
     @PostMapping
-    public ResponseEntity<FacturaDetalle> save(@RequestBody FacturaDetalle facturaDetalle){
-        return ResponseEntity.ok(facturaDetalleService.save(null));
+    public ResponseEntity<FacturaDetalle> save(@RequestBody FacturaDetalle facturaDetalle) {
+        return ResponseEntity.ok(facturaDetalleService.save(facturaDetalle));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FacturaDetalle> update(@PathVariable int id, @RequestBody FacturaDetalle facturaDetalle){
-        FacturaDetalle FacturaDetalleActualizado = facturaDetalleService.update(id, facturaDetalle);
+    public ResponseEntity<FacturaDetalle> update(
+            @PathVariable int id,
+            @RequestBody FacturaDetalle facturaDetalle) {
 
-        if (FacturaDetalleActualizado == null){
+        FacturaDetalle facturaDetalleActualizado =
+                facturaDetalleService.update(id, facturaDetalle);
+
+        if (facturaDetalleActualizado == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(FacturaDetalleActualizado);
+
+        return ResponseEntity.ok(facturaDetalleActualizado);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable int id){
+    public ResponseEntity<Void> delete(@PathVariable int id) {
         facturaDetalleService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }

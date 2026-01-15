@@ -12,43 +12,44 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/libros")
 public class LibroController {
-//
+
     @Autowired
     private LibroService libroService;
 
     @GetMapping
-    public ResponseEntity<List<Libro>> findAll(){ return  ResponseEntity.ok(libroService.findAll());
+    public ResponseEntity<List<Libro>> findAll() {
+        return ResponseEntity.ok(libroService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Libro> findOne(@PathVariable int id){
+    public ResponseEntity<Libro> findOne(@PathVariable int id) {
         Optional<Libro> libro = libroService.findOne(id);
 
-        if (libro == null){
+        if (!libro.isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(libro.orElse(null));
+        return ResponseEntity.ok(libro.get());
     }
 
     @PostMapping
-    public ResponseEntity<Libro> save(@RequestBody Libro libro){
+    public ResponseEntity<Libro> save(@RequestBody Libro libro) {
+        // Aquí Postman debe enviar JSON con Content-Type: application/json
         return ResponseEntity.ok(libroService.save(libro));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Libro> update(@PathVariable int id, @RequestBody Libro libro){
+    public ResponseEntity<Libro> update(@PathVariable int id, @RequestBody Libro libro) {
         Libro libroActualizado = libroService.update(id, libro);
 
-        if (libroActualizado == null){
+        if (libroActualizado == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(libroActualizado);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable int id){
+    public ResponseEntity<Void> delete(@PathVariable int id) {
         libroService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }

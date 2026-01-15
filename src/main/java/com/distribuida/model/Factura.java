@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity
 @Table(name="factura")
 public class Factura {
-
+//
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_factura")

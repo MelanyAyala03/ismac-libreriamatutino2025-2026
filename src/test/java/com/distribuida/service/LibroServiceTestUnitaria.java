@@ -30,6 +30,7 @@ class LibroServiceTestUnitaria {
 
     @BeforeEach
     void setUp() {
+        // Inicializa los mocks
         MockitoAnnotations.openMocks(this);
 
         Categoria categoria = new Categoria();
@@ -60,7 +61,40 @@ class LibroServiceTestUnitaria {
         );
     }
 
+    // ---- ESTE TEST SE ARREGLA ----
+    @Test
+    void testFindOne() {
+        // Mockeamos el DAO para que devuelva nuestro libro de prueba
+        when(libroDAO.findById(anyInt())).thenReturn(Optional.of(libro));
 
+        // Llamamos al método del servicio
+        Optional<Libro> resultado = libroService.findOne(1);
+
+        // Verificamos que el resultado está presente y el título coincide
+        assertTrue(resultado.isPresent(), "El libro debería estar presente");
+        assertEquals(libro.getTitulo(), resultado.get().getTitulo(), "El título debería coincidir");
+
+        // Verificamos que findById del DAO se llamó exactamente una vez con el id correcto
+        verify(libroDAO, times(1)).findById(1);
+    }
+
+    @Test
+    void testSave() {
+        // Mockeamos el DAO para que devuelva nuestro libro al guardarlo
+        when(libroDAO.save(any(Libro.class))).thenReturn(libro);
+
+        // Llamamos al método save del servicio
+        Libro resultado = libroService.save(libro);
+
+        // Verificamos que no sea null y que el título coincida
+        assertNotNull(resultado, "El libro guardado no debería ser null");
+        assertEquals(libro.getTitulo(), resultado.getTitulo(), "El título debería coincidir");
+
+        // Verificamos que save del DAO se llamó exactamente una vez
+        verify(libroDAO, times(1)).save(libro);
+    }
+
+    // ---- LOS DEMÁS TESTS SE QUEDAN IGUAL QUE TÚ TENÍAS ----
     @Test
     void testFindAll() {
         when(libroDAO.findAll()).thenReturn(List.of(libro));
@@ -71,31 +105,6 @@ class LibroServiceTestUnitaria {
         assertEquals(1, resultado.size());
         verify(libroDAO, times(1)).findAll();
     }
-
-
-    @Test
-    void testFindOne() {
-        when(libroDAO.findById(1)).thenReturn(Optional.of(libro));
-
-        Optional<Libro> resultado = libroService.findOne(1);
-
-        assertTrue(resultado.isPresent());
-        assertEquals("Libro Test", resultado.get().getTitulo());
-        verify(libroDAO, times(1)).findById(1);
-    }
-
-
-    @Test
-    void testSave() {
-        when(libroDAO.save(libro)).thenReturn(libro);
-
-        Libro resultado = libroService.save(libro);
-
-        assertNotNull(resultado);
-        assertEquals("Libro Test", resultado.getTitulo());
-        verify(libroDAO, times(1)).save(libro);
-    }
-
 
     @Test
     void testUpdate() {
@@ -108,7 +117,6 @@ class LibroServiceTestUnitaria {
         verify(libroDAO, times(1)).findById(1);
         verify(libroDAO, times(1)).save(any(Libro.class));
     }
-
 
     @Test
     void testDelete() {

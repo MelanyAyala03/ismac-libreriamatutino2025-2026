@@ -112,7 +112,7 @@ public class CategoriaServiceTestUnitaria {
 
         verify(categoriaDAO).deleteById(1);
     }
-
+//
     @Test
     public void testDeleteNoExistente() {
         when(categoriaDAO.existsById(999)).thenReturn(false);

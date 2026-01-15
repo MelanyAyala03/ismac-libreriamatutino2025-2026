@@ -44,7 +44,7 @@ public class FacturaDetalleTestUnitaria {
                 () -> assertNotNull(Detalle.getLibro()),
                 () -> assertNotNull(Detalle.getFactura()),
                 () -> assertEquals("Libro test", Detalle.getLibro().getTitulo()),
-                () -> assertEquals("FAC-010", Detalle.getFactura().getNumFactura())
+                () -> assertEquals("FAC-010", Detalle.getFactura().getClass())
         );
     }
 

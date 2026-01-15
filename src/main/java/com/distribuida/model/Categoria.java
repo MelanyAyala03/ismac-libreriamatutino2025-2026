@@ -2,6 +2,7 @@ package com.distribuida.model;
 
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "categoria")
@@ -18,7 +19,8 @@ public class Categoria {
     @Column(name = "descripcion")
     private String descripcion;
 
-    // Relación OneToMany con Libro
+    // 🔴 AQUÍ ESTABA EL PROBLEMA
+    @JsonIgnore
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     private List<Libro> libros;
 

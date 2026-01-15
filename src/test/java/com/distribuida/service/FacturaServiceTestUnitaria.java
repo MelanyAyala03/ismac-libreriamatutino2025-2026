@@ -91,7 +91,7 @@ public class FacturaServiceTestUnitaria {
         assertNotNull(resultado);
         assertEquals("FAC-0001", resultado.getNumFactura());
     }
-
+//
     @Test
     void updateExistente() {
         Factura nueva = new Factura();

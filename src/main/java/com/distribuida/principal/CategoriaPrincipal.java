@@ -8,3 +8,4 @@ public class CategoriaPrincipal {
         System.out.println(categoria.toString());
     }
 }
+//

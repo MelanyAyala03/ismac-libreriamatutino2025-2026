@@ -7,6 +7,7 @@ import java.util.List;
 @Table(name = "autor")
 public class Autor {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_autor")

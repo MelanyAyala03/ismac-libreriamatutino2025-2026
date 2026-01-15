@@ -1,5 +1,7 @@
 package com.distribuida.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,6 +11,7 @@ public class FacturaDetalle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_factura_detalle")
+    @JsonProperty("id_factura_detalle")
     private int idFacturaDetalle;
 
     @Column(name = "cantidad")
@@ -17,15 +20,29 @@ public class FacturaDetalle {
     @Column(name = "subtotal")
     private float subtotal;
 
-    // Relación ManyToOne con Factura
+    // relación JPA (NO se muestra completa)
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_factura")
     private Factura factura;
 
-    // Relación ManyToOne con Libro
+    // relación JPA (NO se muestra completa)
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_libro")
     private Libro libro;
+
+    // 👉 SOLO PARA JSON (id_factura)
+    @JsonProperty("id_factura")
+    public int getIdFactura() {
+        return factura != null ? factura.getIdFactura() : 0;
+    }
+
+    // 👉 SOLO PARA JSON (id_libro)
+    @JsonProperty("id_libro")
+    public int getIdLibro() {
+        return libro != null ? libro.getIdLibro() : 0;
+    }
 
     public FacturaDetalle() {}
 
@@ -76,16 +93,4 @@ public class FacturaDetalle {
     public void setLibro(Libro libro) {
         this.libro = libro;
     }
-
-    @Override
-    public String toString() {
-        return "FacturaDetalle{" +
-                "idFacturaDetalle=" + idFacturaDetalle +
-                ", cantidad=" + cantidad +
-                ", subtotal=" + subtotal +
-                ", factura=" + factura +
-                ", libro=" + libro +
-                '}';
-    }
-
 }

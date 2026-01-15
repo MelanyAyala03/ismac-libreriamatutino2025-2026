@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name="cliente")
 
 public class cliente {
-
+//
     //atributos
 
     @Id
